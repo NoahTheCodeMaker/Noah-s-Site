@@ -1,5 +1,3 @@
-// Define a function to type out "Hello" on the "introduction" h1 element
-// Define a function to type out "Hello" on the "introduction" h1 element
 function typeHello() {
   const introductionH1 = document.getElementById("introduction");
   const textToType = "Hello!";
@@ -18,5 +16,31 @@ function typeHello() {
   const typingInterval = setInterval(typeNextCharacter, 175);
 }
 
-// Call the function when the page loads
 window.addEventListener("load", typeHello);
+
+const currentCompanyElement = document.getElementById('current-company');
+const currentJobElement = document.getElementById('current-job');
+
+const startDateCompany = new Date('June 2021');
+const startDateJob = new Date('January 2024');
+
+const currentDate = new Date();
+
+let companyDiffYears = currentDate.getFullYear() - startDateCompany.getFullYear();
+let companyDiffMonths = currentDate.getMonth() - startDateCompany.getMonth() + 1;
+
+if (companyDiffMonths < 0) {
+    companyDiffYears--;
+    companyDiffMonths += 12;
+}
+
+let jobDiffYears = currentDate.getFullYear() - startDateJob.getFullYear();
+let jobDiffMonths = currentDate.getMonth() - startDateJob.getMonth() + 1;
+
+if (jobDiffMonths < 0) {
+    jobDiffYears--;
+    jobDiffMonths += 12;
+}
+
+currentCompanyElement.textContent = `${companyDiffYears > 0 ? companyDiffYears + ' years ' : ''}${companyDiffMonths} months`;
+currentJobElement.textContent += `(${jobDiffYears > 0 ? jobDiffYears + ' years ' : ''}${jobDiffMonths} months)`;
